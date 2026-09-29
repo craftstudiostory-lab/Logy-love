@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إلى لوجي ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; overflow-x:hidden;
+  font-family:Tahoma,Arial,sans-serif;
+  background:radial-gradient(circle at top,#3b1230,#140817 55%,#09030b);
+  color:#fff; display:flex; justify-content:center; align-items:center;
+}
+.hearts span{
+  position:fixed; bottom:-40px; color:#ff6fae; opacity:.7;
+  animation:float 8s linear infinite; pointer-events:none;
+}
+.hearts span:nth-child(1){left:8%;animation-delay:0s;font-size:24px}
+.hearts span:nth-child(2){left:22%;animation-delay:2s;font-size:18px}
+.hearts span:nth-child(3){left:40%;animation-delay:4s;font-size:30px}
+.hearts span:nth-child(4){left:61%;animation-delay:1s;font-size:20px}
+.hearts span:nth-child(5){left:78%;animation-delay:3s;font-size:27px}
+.hearts span:nth-child(6){left:92%;animation-delay:5s;font-size:17px}
+@keyframes float{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+
+.card{
+  width:min(92%,560px); padding:42px 25px; text-align:center;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.15);
+  border-radius:30px; backdrop-filter:blur(14px);
+  box-shadow:0 25px 80px rgba(0,0,0,.5);
+  position:relative; z-index:2;
+}
+h1{font-size:42px;margin:0 0 10px;color:#ff9bc4}
+.subtitle{font-size:18px;opacity:.8;margin-bottom:30px}
+button{
+  border:0; border-radius:999px; padding:14px 28px; font-size:17px;
+  font-weight:bold; cursor:pointer; color:white;
+  background:linear-gradient(135deg,#ff4f93,#b72b72);
+  box-shadow:0 10px 30px rgba(255,79,147,.3);
+}
+button:active{transform:scale(.97)}
+#letter{display:none}
+.message{
+  min-height:150px; display:flex; align-items:center; justify-content:center;
+  font-size:24px; line-height:1.9; animation:appear .7s ease;
+}
+@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.counter{font-size:13px;opacity:.5;margin:15px 0 20px}
+.signature{margin-top:25px;color:#ff9bc4;font-size:20px}
+</style>
+</head>
+<body>
+<div class="hearts">
+<span>❤</span><span>♡</span><span>❤</span><span>♡</span><span>❤</span><span>♡</span>
+</div>
+
+<main class="card">
+  <section id="intro">
+    <div style="font-size:58px">❤️</div>
+    <h1>لوجي</h1>
+    <div class="subtitle">في حاجة صغيرة عايز أقولها لك...</div>
+    <button onclick="start()">افتحي المفاجأة ✨</button>
+  </section>
+
+  <section id="letter">
+    <div style="font-size:45px">💌</div>
+    <h1>إلى لوجي ❤️</h1>
+    <div class="counter" id="counter"></div>
+    <div class="message" id="message"></div>
+    <button onclick="nextMessage()">كمّلي ❤️</button>
+    <div class="signature">بعشقك بجنون ❤️</div>
+  </section>
+</main>
+
+<script>
+const messages = [
+"بعشق ضحكتك ❤️",
+"بعشق حبك ليا ووقوفك جمبي وقت حزني ❤️",
+"بحبك بكل تفاصيلك ❤️",
+"بحب نكدك وشقاوتك ❤️",
+"بحب شكلك وبحب ملامحك ❤️",
+"بحب اسمك ونبرته الجميلة على لساني ❤️",
+"من يوم ما بقيتي معايا وحياتي بقت أحسن ❤️",
+"بعشقك بجنون ❤️",
+"بحبك حب تملك يعني إنتِ ليا أنا وبس ❤️",
+"بحبك يا بنتي يا شاطرة ❤️"
+];
+
+let i=0;
+function start(){
+ document.getElementById("intro").style.display="none";
+ document.getElementById("letter").style.display="block";
+ show();
+}
+function show(){
+ const el=document.getElementById("message");
+ el.style.animation="none";
+ void el.offsetWidth;
+ el.style.animation="appear .7s ease";
+ el.textContent=messages[i];
+ document.getElementById("counter").textContent=`${i+1} / ${messages.length}`;
+}
+function nextMessage(){
+ if(i < messages.length-1){i++;show();}
+ else{
+   document.querySelector("#letter button").textContent="❤️";
+   document.querySelector("#letter button").onclick=()=>{
+     document.getElementById("message").innerHTML=
+       "وفي الآخر...<br><strong>كل الكلام ده مش هيكفي يوصف مكانتك عندي ❤️</strong>";
+     document.getElementById("counter").textContent="لوجي ❤️";
+     document.querySelector("#letter button").style.display="none";
+   };
+ }
+}
+</script>
+</body>
+</html>
